@@ -18,6 +18,17 @@ export class PostsService {
     return this.prisma.post.findMany();
   }
 
+  async getPublishedPosts(): Promise<Post[]> {
+    return this.prisma.post.findMany({
+      where: {
+        published: true,
+      },
+      include: {
+        author: true,
+      },
+    });
+  }
+
   async create(dto: CreatePostDto): Promise<Post> {
     const { authorEmail } = dto;
 

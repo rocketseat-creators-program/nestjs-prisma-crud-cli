@@ -26,6 +26,11 @@ export class PostsController {
     return this.postsService.findAll();
   }
 
+  @Get('feed')
+  async getPublishedPosts() {
+    return this.postsService.getPublishedPosts();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.postsService.findOne(+id);
