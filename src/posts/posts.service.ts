@@ -19,8 +19,17 @@ export class PostsService {
   }
 
   async create(dto: CreatePostDto): Promise<Post> {
+    const { authorEmail } = dto;
+
+    delete dto.authorEmail;
+
     const data: Prisma.PostCreateInput = {
       ...dto,
+      author: {
+        connect: {
+          email: authorEmail,
+        },
+      },
     };
 
     return this.prisma.post.create({

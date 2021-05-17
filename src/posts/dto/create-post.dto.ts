@@ -4,5 +4,5 @@ export class CreatePostDto extends Post {
   title: string;
   content: string;
   published: boolean;
-  authorId: number;
+  authorEmail: string;
 }
